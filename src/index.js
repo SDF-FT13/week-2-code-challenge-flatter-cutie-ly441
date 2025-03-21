@@ -1,5 +1,6 @@
-
+document.addEventListener("DOMContentLoaded", function() {
 //your code here
+)};
 // Base API URL
 const baseURL = "http://localhost:3000/characters";
 let currentCharacter = null; // To store the selected character
@@ -36,6 +37,9 @@ function displayCharacterDetails(character) {
     `;
 
     // Add event listener to the reset votes button
+    setTimeout(() => {
+        document.getElementById("reset-btn").addEventListener("click", resetVotes);
+    }, 0);
     document.getElementById("reset-btn").addEventListener("click", resetVotes);
 }
 

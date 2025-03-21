@@ -1,7 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
 //your code here
-)};
-// Base API URL
 const baseURL = "http://localhost:3000/characters";
 let currentCharacter = null; // To store the selected character
 
@@ -108,6 +106,7 @@ document.getElementById("character-bar").addEventListener("submit", function (ev
 
 // Load characters when the page loads
 fetchCharacters();
+});
 
 
 

@@ -52,6 +52,8 @@ document.getElementById("votes-form").addEventListener("submit", function (event
         const newVotes = currentCharacter.votes + votesToAdd;
         currentCharacter.votes = newVotes;
         document.getElementById("vote-count").textContent = newVotes;
+        votesInput.innerHTML =``;
+        votesInput.appendChild(votes)
 
         // Update votes on the server
         fetch(`${baseURL}/${currentCharacter.id}`, {
@@ -83,8 +85,8 @@ function resetVotes() {
 // Handle adding a new character
 document.getElementById("character-form").addEventListener("submit", function (event) {
     event.preventDefault();
-    const name = document.getElementById("new-name").value.trim();
-    const image = document.getElementById("new-image").value.trim();
+    const name = document.getElementById("name").value.trim();
+    const image = document.getElementById("image-url").value.trim();
 
     if (name && image) {
         const newCharacter = { name, image, votes: 0 };

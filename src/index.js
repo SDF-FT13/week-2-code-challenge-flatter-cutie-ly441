@@ -46,7 +46,7 @@ function displayCharacterDetails(character) {
 document.getElementById("votes-form").addEventListener("submit", function (event) {
     event.preventDefault();
     const votesInput = document.getElementById("votes");
-    const votesToAdd = parseInt(votesInput.value, 10);
+    const votesToAdd = parseInt(votesInput.value, max = 100 , min = 0);
 
     if (!isNaN(votesToAdd) && currentCharacter) {
         const newVotes = currentCharacter.votes + votesToAdd;

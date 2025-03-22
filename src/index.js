@@ -28,9 +28,9 @@ function displayCharacterDetails(character) {
 
     const detailedInfo = document.getElementById("detailed-info");
     detailedInfo.innerHTML = `
-        <h2>${character.name}</h2>
-        <img src="${character.image}" alt="${character.name}" style="max-width: 300px;">
-        <p>Votes: <span id="vote-count">${character.votes}</span></p>
+        <p>name${character.name}</p>
+        <img id="image" src="${character.image}" alt="Character's Name" style="max-width: 300px;">
+        <h4>Votes: <span id="vote-count">${character.votes}</span></h4>
         <button id="reset-btn">Reset Votes</button>
     `;
 
@@ -38,7 +38,8 @@ function displayCharacterDetails(character) {
     setTimeout(() => {
         document.getElementById("reset-btn").addEventListener("click", resetVotes);
     }, 0);
-    document.getElementById("reset-btn").addEventListener("click", resetVotes);
+   
+    
 }
 
 // Handle vote submission
@@ -69,6 +70,7 @@ function resetVotes() {
         currentCharacter.votes = 0;
         document.getElementById("reset-btn").textContent = "0";
 
+        
         // Persist reset to backend
         fetch(`${baseURL}/${currentCharacter.id}`, {
             method: "PATCH",
@@ -79,7 +81,7 @@ function resetVotes() {
 }
 
 // Handle adding a new character
-document.getElementById("character-bar").addEventListener("submit", function (event) {
+document.getElementById("character-form").addEventListener("submit", function (event) {
     event.preventDefault();
     const name = document.getElementById("new-name").value.trim();
     const image = document.getElementById("new-image").value.trim();
@@ -99,9 +101,12 @@ document.getElementById("character-bar").addEventListener("submit", function (ev
             displayCharacterDetails(character); // Show new character
         })
         .catch(error => console.error("Error adding character:", error));
+        characterForm.innerHTML = ``;
     }
 
-    document.getElementById("character-bar").reset(); // Clear form fields
+    document.getElementById("character-bar").reset(); 
+    
+    // Clear form fields
 });
 
 // Load characters when the page loads

@@ -13,14 +13,8 @@ html, body {
   padding: 0.5em;
 }
 
-#character-bar {
-  height: 15vh;
-  background: rgb(49, 109, 179);
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding-bottom: 3vh;
-}
+
+
 
 #character-bar span {
   padding: 1%;
@@ -83,13 +77,15 @@ h1 {
 /* Character Bar */
 #character-bar {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     flex-wrap: wrap;
     background-color: plum;
     padding: 10px;
     border-bottom: 20px solid #ddd;
     gap: 20px;
     font-size: 20px;
+    height: 15vh;
+
     
 }
 
@@ -169,6 +165,7 @@ button:hover {
     width: 300px;
     border-radius: 60px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    font-size: 18px;
 }
 
 input[type="text"] {

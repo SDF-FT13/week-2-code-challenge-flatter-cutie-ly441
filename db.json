@@ -40,12 +40,18 @@
       "id": "5563",
       "name": "dr.bear",
       "image": "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExaHprZjJlZGlhbzVzMWx1amYxZHFxY21jMzA2bm90N2R6MXF4ZTRuYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/FArgGzk7KO14k/giphy.gif",
-      "votes": 40
+      "votes": 0
     },
     {
       "id": "1b12",
       "name": "husky",
       "image": "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbDR1eHFhZnNhNWdrY2R5c3YzanV3MG5zN2JrOXoyN3RyazljZTEzNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/NTjGgsZg6PGDgxQM5d/giphy.gif",
+      "votes": 0
+    },
+    {
+      "id": "2f25",
+      "name": "dog",
+      "image": "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExdmdkNzA5MjhnM2g2a2VocGJqbGN2bThzeGZjaThlcDdzMmoxYmN6byZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/oOKZH64fE4URpY3OS2/giphy.gif",
       "votes": 0
     }
   ]

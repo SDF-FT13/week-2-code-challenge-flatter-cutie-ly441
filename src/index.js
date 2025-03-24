@@ -89,12 +89,10 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Handle adding a new character
-  document
-    .getElementById("character-form")
-    .addEventListener("submit", function (event) {
+  document.getElementById("character-form").addEventListener("submit", function (event) {
       event.preventDefault();
-      const name = document.getElementById("name").value();
-      const image = document.getElementById("image-url").value();
+      const name = document.getElementById("name").value;
+      const image = document.getElementById("image-url").value;
 
       if (name && image) {
         const newCharacter = { name, image, votes: 0 };
@@ -107,8 +105,8 @@ document.addEventListener("DOMContentLoaded", function () {
         })
           .then((response) => response.json())
           .then((character) => {
-            fetchCharacters(); // Refresh character list
-            displayCharacterDetails(character); // Show new character
+            displayCharacterDetails(character);
+            fetchCharacters(); // Refresh character bar
           })
           .catch((error) => console.error("Error adding character:", error));
 

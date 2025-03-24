@@ -9,7 +9,6 @@ html, body {
 
 .logo{
   text-align: center;
-  background-color: rgb(49, 109, 179);
   color: white;
   padding: 0.5em;
 }
@@ -66,7 +65,7 @@ input[type="text"] {
 /* General Page Styling */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: brown;
     text-align: center;
     margin: 0;
     padding: 0;
@@ -75,7 +74,7 @@ body {
 
 /* Header */
 h1 {
-    background-color: #ff6b6b;
+    background-color:palevioletred;
     color: white;
     padding: 200px;
     margin: 0;
@@ -86,15 +85,16 @@ h1 {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    background-color: #fff;
+    background-color: plum;
     padding: 10px;
     border-bottom: 20px solid #ddd;
     gap: 20px;
     font-size: 20px;
+    
 }
 
 #character-bar span {
-    background-color: #ffcc5c;
+    background-color:pink;
     margin: 5px;
     padding: 8px 12px;
     border-radius: 5px;

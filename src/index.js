@@ -1,120 +1,125 @@
-document.addEventListener("DOMContentLoaded", function() {
-//your code here
-const baseURL = "http://localhost:3000/characters";
-let currentCharacter = null; // To store the selected character
+document.addEventListener("DOMContentLoaded", function () {
+  const baseURL = "http://localhost:3000/characters";
+  let currentCharacter = null; // Store the selected character
 
-// Fetch and display all characters in the character bar
-function fetchCharacters() {
+  // Fetch and display all characters in the character bar
+  function fetchCharacters() {
     fetch(baseURL)
-        .then(response => response.json())
-        .then(characters => {
-            const characterBar = document.getElementById("character-bar");
-            characterBar.innerHTML = ""; // Clear previous content
+      .then((response) => response.json())
+      .then((characters) => {
+        const characterBar = document.getElementById("character-bar");
+        characterBar.innerHTML = ""; // Clear previous content
 
-            characters.forEach(character => {
-                const span = document.createElement("span");
-                span.textContent = character.name;
-                span.style.cursor = "pointer"; // Make it clickable
-                span.addEventListener("click", () => displayCharacterDetails(character));
-                characterBar.appendChild(span);
-            });
-        })
-        .catch(error => console.error("Error fetching characters:", error));
-}
+        characters.forEach((character) => {
+          const span = document.createElement("span");
+          span.textContent = character.name;
+          span.style.cursor = "pointer"; // Make it clickable
+          span.addEventListener("click", () =>
+            displayCharacterDetails(character)
+          );
+          characterBar.appendChild(span);
+        });
+      })
+      .catch((error) => console.error("Error fetching characters:", error));
+  }
 
-// Display character details in #detailed-info
-function displayCharacterDetails(character) {
+  // Display character details in #detailed-info
+  function displayCharacterDetails(character) {
     currentCharacter = character; // Store the selected character
 
     const detailedInfo = document.getElementById("detailed-info");
     detailedInfo.innerHTML = `
-        <p>name${character.name}</p>
-        <img id="image" src="${character.image}" alt="Character's Name" style="max-width: 300px;">
-        <h4>Votes: <span id="vote-count">${character.votes}</span></h4>
-        <button id="reset-btn">Reset Votes</button>
-    `;
+            <p><strong>${character.name}</strong></p>
+            <img src="${character.image}" alt="${character.name}" style="max-width: 300px;">
+            <h4>Votes: <span id="vote-count">${character.votes}</span></h4>
+            <button id="reset-btn">Reset Votes</button>
+        `;
 
     // Add event listener to the reset votes button
-    setTimeout(() => {
-        document.getElementById("reset-btn").addEventListener("click", resetVotes);
-    }, 0);
-   
-    
-}
+    document.getElementById("reset-btn").addEventListener("click", resetVotes);
+  }
 
-// Handle vote submission
-document.getElementById("votes-form").addEventListener("submit", function (event) {
-    event.preventDefault();
-    const votesInput = document.getElementById("votes");
-    const votesToAdd = parseInt(votesInput.value, max = 100 , min = 0);
+  // Handle vote submission
+  document
+    .getElementById("votes-form")
+    .addEventListener("submit", function (event) {
+      event.preventDefault();
 
-    if (!isNaN(votesToAdd) && currentCharacter) {
-        const newVotes = currentCharacter.votes + votesToAdd;
-        currentCharacter.votes = newVotes;
-        document.getElementById("vote-count").textContent = newVotes;
-        votesInput.innerHTML =``;
-        votesInput.appendChild(votes)
+      const votesInput = document.getElementById("votes");
+      let votesToAdd = parseInt(votesInput.value, 10); // Ensure number conversion
 
-        // Update votes on the server
+      if (!isNaN(votesToAdd) && currentCharacter) {
+        // Restrict votes between 0 and 100
+        votesToAdd = Math.max(0, Math.min(100, votesToAdd));
+
+        // Update the character's votes
+        currentCharacter.votes += votesToAdd;
+
+        // Update the vote count in the UI
+        document.getElementById("vote-count").textContent =
+          currentCharacter.votes;
+
+        // Send updated votes to the server
         fetch(`${baseURL}/${currentCharacter.id}`, {
-            method: "PATCH",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ votes: newVotes })
-        }).catch(error => console.error("Error updating votes:", error));
-    }
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ votes: currentCharacter.votes }),
+        }).catch((error) => console.error("Error updating votes:", error));
 
-    votesInput.value = ""; // Reset input field
-});
+        // Clear input field
+        votesInput.value = "";
+      } else {
+        alert("Please enter a valid number between 0 and 100.");
+      }
+    });
 
-// Reset votes to 0
-function resetVotes() {
+  // Reset votes to 0
+  function resetVotes() {
     if (currentCharacter) {
-        currentCharacter.votes = 0;
-        document.getElementById("reset-btn").textContent = "0";
+      currentCharacter.votes = 0;
+      document.getElementById("vote-count").textContent = 0;
 
-        
-        // Persist reset to backend
-        fetch(`${baseURL}/${currentCharacter.id}`, {
-            method: "PATCH",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ votes: 0 })
-        }).catch(error => console.error("Error resetting votes:", error));
+      // Persist reset to backend
+      fetch(`${baseURL}/${currentCharacter.id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ votes: 0 }),
+      }).catch((error) => console.error("Error resetting votes:", error));
     }
-}
+  }
 
-// Handle adding a new character
-document.getElementById("character-form").addEventListener("submit", function (event) {
-    event.preventDefault();
-    const name = document.getElementById("name").value.trim();
-    const image = document.getElementById("image-url").value.trim();
+  // Handle adding a new character
+  document
+    .getElementById("character-form")
+    .addEventListener("submit", function (event) {
+      event.preventDefault();
+      const name = document.getElementById("name").value();
+      const image = document.getElementById("image-url").value();
 
-    if (name && image) {
+      if (name && image) {
         const newCharacter = { name, image, votes: 0 };
 
         // Save new character to backend
         fetch(baseURL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(newCharacter)
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(newCharacter),
         })
-        .then(response => response.json())
-        .then(character => {
+          .then((response) => response.json())
+          .then((character) => {
             fetchCharacters(); // Refresh character list
             displayCharacterDetails(character); // Show new character
-        })
-        .catch(error => console.error("Error adding character:", error));
-        characterForm.innerHTML = ``;
-    }
+          })
+          .catch((error) => console.error("Error adding character:", error));
 
-    document.getElementById("character-bar").reset(); 
-    
-    // Clear form fields
+        // Clear form fields
+        document.getElementById("name").value = "";
+        document.getElementById("image-url").value = "";
+      } else {
+        alert("Please enter a valid name and image URL.");
+      }
+    });
+
+  // Load characters when the page loads
+  fetchCharacters();
 });
-
-// Load characters when the page loads
-fetchCharacters();
-});
-
-
-
-    

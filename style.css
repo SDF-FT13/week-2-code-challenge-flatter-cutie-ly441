@@ -59,3 +59,126 @@ input[type="text"] {
   width: 300px;
   height: 300px;
 }
+
+
+
+
+/* General Page Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+h1 {
+    background-color: #ff6b6b;
+    color: white;
+    padding: 15px;
+    margin: 0;
+}
+
+/* Character Bar */
+#character-bar {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    background-color: #fff;
+    padding: 10px;
+    border-bottom: 2px solid #ddd;
+}
+
+#character-bar span {
+    background-color: #ffcc5c;
+    margin: 5px;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+#character-bar span:hover {
+    background-color: #ffa500;
+    color: white;
+}
+
+/* Detailed Character Info */
+#detailed-info {
+    margin: 20px auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#detailed-info img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+/* Voting Form */
+#votes-form {
+    margin-top: 15px;
+}
+
+input[type="number"] {
+    padding: 8px;
+    width: 50px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    margin: 5px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Reset Button */
+#reset-btn {
+    background-color: #ff6b6b;
+}
+
+#reset-btn:hover {
+    background-color: #d63031;
+}
+
+/* Character Form */
+#character-form {
+    background-color: white;
+    padding: 20px;
+    margin: 20px auto;
+    width: 300px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"] {
+    width: 90%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#character-form button {
+    background-color: #3498db;
+}
+
+#character-form button:hover {
+    background-color: #2980b9;
+}

@@ -87,7 +87,8 @@ h1 {
     flex-wrap: wrap;
     background-color: #fff;
     padding: 10px;
-    border-bottom: 2px solid #ddd;
+    border-bottom: 20px solid #ddd;
+    gap: 20px;
 }
 
 #character-bar span {

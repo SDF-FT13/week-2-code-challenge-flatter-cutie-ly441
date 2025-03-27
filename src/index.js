@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Handle vote submission
   document
     .getElementById("votes-form")
-    .addEventListener("submit", function (event) {
+    .addEventListener("click", function (event) {
       event.preventDefault();
 
       const votesInput = document.getElementById("votes");
